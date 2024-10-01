@@ -25,3 +25,30 @@ function getHumanChoice(){
         return "scissors"
     }
 }
+
+function playRound(humanChoice, computerChoice){
+    humanChoice= getHumanChoice()
+    computerChoice = getComputerChoice()
+    console.log(`Human- ${humanChoice} : ${computerChoice} -Computer`)
+    if(humanChoice == computerChoice){
+        console.log("draw")
+    }else if(humanChoice == "rock" && computerChoice == "paper"){
+        computerScore += 1
+    }else if(humanChoice == "paper" && computerChoice=="scissors"){
+        computerScore += 1
+    }else if(humanChoice == "scissors" && computerChoice == "rock"){
+        computerScore += 1
+    }else{
+        humanScore+= 1
+    }
+    checkScores()
+}
+
+function checkScores(){
+    let winningScore = 3
+    if(humanScore == winningScore){
+        console.log("Human wins")
+    }else if(computerScore == winningScore){
+        console.log("Computer wins")
+    }
+}
