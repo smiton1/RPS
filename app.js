@@ -13,3 +13,15 @@ function getComputerChoice(){
         return "scissors"
     }
 }
+
+//get Human's pick
+function getHumanChoice(){
+    let humanChoice = prompt("Rock, Paper, Scissors: ")
+    if(humanChoice == "rock"){
+        return "rock"
+    }else if(humanChoice == "paper"){
+        return "paper"
+    }else if(humanChoice == "scissors"){
+        return "scissors"
+    }
+}
