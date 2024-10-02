@@ -16,7 +16,7 @@ function getComputerChoice(){
 
 //get Human's pick
 function getHumanChoice(){
-    let humanChoice = prompt("Rock, Paper, Scissors: ")
+    let humanChoice = prompt("Rock, Paper, Scissors: ").toLowerCase()
     if(humanChoice == "rock"){
         return "rock"
     }else if(humanChoice == "paper"){
@@ -50,5 +50,19 @@ function checkScores(){
         console.log("Human wins")
     }else if(computerScore == winningScore){
         console.log("Computer wins")
+    }
+}
+
+function playGame(){
+    playRound()
+    playRound()
+    playRound()
+    playRound()
+    playRound()
+    if(humanScore>computerScore){
+        console.log("human wins")
+    }
+    if(computerScore> humanScore){
+        console.log("computer wins")
     }
 }
