@@ -1,16 +1,29 @@
+const playButton = document.querySelector("#play")
+const buttons = document.querySelector("#buttons")
+const score = document.querySelector("#score")
 const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
+score.style.display="none"
+rock.style.display = "none"
+scissors.style.display="none"
+paper.style.display="none"
+
+playButton.addEventListener("click",()=>{
+    playButton.style.display = "none"
+    score.style.display= "flex"
+    rock.style.display= "inline-flex"
+    paper.style.display="inline-flex"
+    scissors.style.display = "inline-flex"
+})
 
 rock.addEventListener("click", ()=>playRound("rock"))
 paper.addEventListener("click",()=>playRound("paper"))
 scissors.addEventListener("click",()=>playRound("scissors"))
 
-//score variables
 let humanScore = 0
 let computerScore = 0
 
-//get the computer's pick
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 3) +1
     if(computerChoice == 1){
@@ -22,16 +35,17 @@ function getComputerChoice(){
     }
 }
 
-
 function playRound(humanChoice){
     computerChoice = getComputerChoice()
-    console.log(`Human- ${humanChoice} : ${computerChoice} -Computer`)
     if(computerChoice == humanChoice){
+        score.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         console.log("draw")
     }else if((computerChoice == "rock" && humanChoice == "scissors")||(computerChoice=="paper" &&humanChoice =="rock")||(computerChoice=="scissors" &&humanChoice=="paper")){
+        score.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         computerScore +=1
         console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }else{
+        score.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         humanScore+= 1
         console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }
@@ -43,9 +57,22 @@ function checkScores(){
         console.log("computer wins!")
         humanScore= 0
         computerScore=0
+        score.style.display="none"
+        rock.style.display= "none"
+        paper.style.display="none"
+        scissors.style.display = "none"
+        playButton.style.display ="block"
+        
     }else if(humanScore==5){
         console.log("human wins!")
         humanScore=0
         computerScore=0
+                score.style.display="none"
+        rock.style.display= "none"
+        paper.style.display="none"
+        scissors.style.display = "none"
+        playButton.style.display="block"
+        
     }
+
 }
