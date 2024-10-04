@@ -5,6 +5,8 @@ const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
 const gameTitle=document.querySelector("#gameTitle")
+const scores = document.querySelector("#scores")
+scores.style.display="none"
 gameTitle.style.display ="none"
 gameText.style.display="none"
 rock.style.display = "none"
@@ -13,12 +15,14 @@ paper.style.display="none"
 
 playButton.addEventListener("click",()=>{
     gameTitle.textContent = "Lets Play!"
+    scores.style.display = "flex"
+    scores.textContent=`${humanScore} : ${computerScore}`
     playButton.style.display = "none"
     gameTitle.style.display="flex"
     gameText.style.display= "flex"
-    rock.style.display= "inline-flex"
-    paper.style.display="inline-flex"
-    scissors.style.display = "inline-flex"
+    rock.style.display= "inline"
+    paper.style.display="inline"
+    scissors.style.display = "inline"
 })
 
 rock.addEventListener("click", ()=>playRound("rock"))
@@ -42,23 +46,22 @@ function getComputerChoice(){
 function playRound(humanChoice){
     computerChoice = getComputerChoice()
     if(computerChoice == humanChoice){
+        scores.textContent=`${humanScore} : ${computerScore}`
         gameText.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
-        console.log("draw")
+        console.log("👀")
     }else if((computerChoice == "rock" && humanChoice == "scissors")||(computerChoice=="paper" &&humanChoice =="rock")||(computerChoice=="scissors" &&humanChoice=="paper")){
         gameText.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         computerScore +=1
-        console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }else{
         gameText.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         humanScore+= 1
-        console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }
+    scores.textContent=`${humanScore} : ${computerScore}`
     checkScores()
 }
 
 function checkScores(){
     if(computerScore == 5){
-        console.log("computer wins!")
         humanScore= 0
         computerScore=0
         gameTitle.textContent="Computer Won! Play Again?"
@@ -69,7 +72,6 @@ function checkScores(){
         playButton.style.display ="block"
         
     }else if(humanScore==5){
-        console.log("human wins!")
         humanScore=0
         computerScore=0
         gameTitle.textContent="Player Won! Play Again?"
