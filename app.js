@@ -1,3 +1,11 @@
+const rock = document.getElementById("rock")
+const paper = document.getElementById("paper")
+const scissors = document.getElementById("scissors")
+
+rock.addEventListener("click", ()=>playRound("rock"))
+paper.addEventListener("click",()=>playRound("paper"))
+scissors.addEventListener("click",()=>playRound("scissors"))
+
 //score variables
 let humanScore = 0
 let computerScore = 0
@@ -14,55 +22,30 @@ function getComputerChoice(){
     }
 }
 
-//get Human's pick
-function getHumanChoice(){
-    let humanChoice = prompt("Rock, Paper, Scissors: ").toLowerCase()
-    if(humanChoice == "rock"){
-        return "rock"
-    }else if(humanChoice == "paper"){
-        return "paper"
-    }else if(humanChoice == "scissors"){
-        return "scissors"
-    }
-}
 
-function playRound(humanChoice, computerChoice){
-    humanChoice= getHumanChoice()
+function playRound(humanChoice){
     computerChoice = getComputerChoice()
     console.log(`Human- ${humanChoice} : ${computerChoice} -Computer`)
-    if(humanChoice == computerChoice){
+    if(computerChoice == humanChoice){
         console.log("draw")
-    }else if(humanChoice == "rock" && computerChoice == "paper"){
-        computerScore += 1
-    }else if(humanChoice == "paper" && computerChoice=="scissors"){
-        computerScore += 1
-    }else if(humanChoice == "scissors" && computerChoice == "rock"){
-        computerScore += 1
+    }else if((computerChoice == "rock" && humanChoice == "scissors")||(computerChoice=="paper" &&humanChoice =="rock")||(computerChoice=="scissors" &&humanChoice=="paper")){
+        computerScore +=1
+        console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }else{
         humanScore+= 1
+        console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }
     checkScores()
 }
 
 function checkScores(){
-    let winningScore = 3
-    if(humanScore == winningScore){
-        console.log("Human wins")
-    }else if(computerScore == winningScore){
-        console.log("Computer wins")
-    }
-}
-
-function playGame(){
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-    if(humanScore>computerScore){
-        console.log("human wins")
-    }
-    if(computerScore> humanScore){
-        console.log("computer wins")
+    if(computerScore == 5){
+        console.log("computer wins!")
+        humanScore= 0
+        computerScore=0
+    }else if(humanScore==5){
+        console.log("human wins!")
+        humanScore=0
+        computerScore=0
     }
 }
