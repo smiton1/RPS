@@ -1,17 +1,21 @@
 const playButton = document.querySelector("#play")
 const buttons = document.querySelector("#buttons")
-const score = document.querySelector("#score")
+const gameText = document.querySelector("#gameText")
 const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
-score.style.display="none"
+const gameTitle=document.querySelector("#gameTitle")
+gameTitle.style.display ="none"
+gameText.style.display="none"
 rock.style.display = "none"
 scissors.style.display="none"
 paper.style.display="none"
 
 playButton.addEventListener("click",()=>{
+    gameTitle.textContent = "Lets Play!"
     playButton.style.display = "none"
-    score.style.display= "flex"
+    gameTitle.style.display="flex"
+    gameText.style.display= "flex"
     rock.style.display= "inline-flex"
     paper.style.display="inline-flex"
     scissors.style.display = "inline-flex"
@@ -38,14 +42,14 @@ function getComputerChoice(){
 function playRound(humanChoice){
     computerChoice = getComputerChoice()
     if(computerChoice == humanChoice){
-        score.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
+        gameText.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         console.log("draw")
     }else if((computerChoice == "rock" && humanChoice == "scissors")||(computerChoice=="paper" &&humanChoice =="rock")||(computerChoice=="scissors" &&humanChoice=="paper")){
-        score.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
+        gameText.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         computerScore +=1
         console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }else{
-        score.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
+        gameText.textContent= `Human- ${humanChoice} : ${computerChoice} -Computer`
         humanScore+= 1
         console.log("computer score: " + computerScore + " humanScore: " + humanScore)
     }
@@ -57,7 +61,8 @@ function checkScores(){
         console.log("computer wins!")
         humanScore= 0
         computerScore=0
-        score.style.display="none"
+        gameTitle.textContent="Computer Won! Play Again?"
+        gameText.style.display="none"
         rock.style.display= "none"
         paper.style.display="none"
         scissors.style.display = "none"
@@ -67,7 +72,8 @@ function checkScores(){
         console.log("human wins!")
         humanScore=0
         computerScore=0
-                score.style.display="none"
+        gameTitle.textContent="Player Won! Play Again?"
+        gameText.style.display="none"
         rock.style.display= "none"
         paper.style.display="none"
         scissors.style.display = "none"
